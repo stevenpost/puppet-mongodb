@@ -91,6 +91,7 @@ class Puppet::Provider::Mongodb < Puppet::Provider
 
       tls_ca = config['tlsca']
       args += ['--tlsCAFile', tls_ca] unless tls_ca.nil?
+      args += ['--tlsUseSystemCA'] if tls_ca.nil?
 
       args.push('--tlsAllowInvalidHostnames') if tls_invalid_hostnames(config)
     end

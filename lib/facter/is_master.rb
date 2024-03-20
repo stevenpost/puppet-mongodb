@@ -25,6 +25,7 @@ def get_options_from_hash_config(config)
   result << "--tls --host #{Facter.value(:fqdn)}" if config['net.tls.mode'] == 'requireTLS' || !config['net.tls.certificateKeyFile'].nil? || !config['net.tls.CAFile'].nil?
   result << "--tlsCertificateKeyFile #{config['net.tls.certificateKeyFile']}" unless config['net.tls.certificateKeyFile'].nil?
   result << "--tlsCAFile #{config['net.tls.CAFile']}" unless config['net.tls.CAFile'].nil?
+  result << '--tlsUseSystemCA' if config['net.tls.CAFile'].nil?
 
   result << '--ipv6' unless config['net.ipv6'].nil?
 
